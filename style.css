@@ -1,3 +1,12 @@
+body {
+background-color: dimgrey;
+}
+
 #timer {
-   
+    position: absolute;
+    right: 150px;
+
+}
+#start-btn {
+    margin-top: 200px;
 }

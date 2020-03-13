@@ -10,26 +10,54 @@
     <link rel="stylesheet" href="style.css">
     <title>Code-Quiz</title>
 </head>
+
 <body>
-<header>
-    <ul class="nav">
-        <li class="nav-item">
-          <a class="nav-link active" href="#">High Score</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" id="timer" href="#">Timer:</a>
-        </li>
-      </ul>
+    <header>
+        <nav class="nav">
+            <a class="nav-link active" href="#">High-Score</a>
+            <a class="nav-link" id="timer" href="#">Timer</a>
+        </nav>
+    </header>
 
-</header>
+    <section id="quiz-area">
 
-<section id="quiz-area">
+        <!-- Button trigger modal -->
+        <div class="d-flex justify-content-center" id="start-btn">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
+                Click here to start the quiz!
+            </button>
+        </div>
 
-</section>
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Rules:
+                        You will have 2 minutes to complete the quiz. For each question answered incorrectly you will lose 10 seconds.
 
-<footer>
+                        <br>Good Luck!
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Understood</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-</footer>
+    </section>
+
+    <footer>
+
+    </footer>
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
