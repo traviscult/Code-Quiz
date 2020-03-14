@@ -1,6 +1,9 @@
 body {
 }
-
+p {
+  text-align: center;
+  margin-top: 150px;
+}
 #timer {
     position: absolute;
     right: 150px;
@@ -10,13 +13,23 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 200px;
+  margin-top: 25px;
+}
+#answer-btns{
+  border-radius: 5px;
+  padding: 5px 10px;
+  color: white;
+  outline: none;
+}
+.question-container{
+  margin-top: 150px;
 }
 .btn-grid {
     display: grid;
     grid-template-columns: repeat(2, auto);
     gap: 10px;
     margin: 20px 0;
+
   }
 
   .btn:hover {
@@ -34,4 +47,25 @@ body {
   .hide {
     display: none;
   }
- 
+  
+
+.time {
+  width: 100%;
+  text-align: center;
+}
+
+.time::after {
+  content: " ";
+  display: block;
+  clear: both;
+}
+
+#minutes {
+  font-size: 2em;
+  float: left;
+}
+
+#seconds {
+  font-size: 1em;
+  float: left;
+}

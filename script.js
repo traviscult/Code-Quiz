@@ -6,7 +6,7 @@ const QuestionContainerEl = document.getElementById('container');
 
 startButton.addEventListener('click', startGame)
 
-// gameTimer = 120 * 1000ms
+// let gameTimer = 120 * 1000ms
 // let score = 0;
 
 // timerLossForWrongAnswer = 5 * 1000ms
@@ -14,8 +14,10 @@ startButton.addEventListener('click', startGame)
 // check for start button
 function startGame() {
     console.log('started');
-    startButton.classList.add('hide');
-    QuestionContainerEl.classList.add('hide');
+    $( ".start-btn" ).hide();
+    $( ".rules" ).hide();;
+    $( ".container" ).removeClass("hide");
+    // QuestionContainerEl.classList.add('hide');
     
 }
     
