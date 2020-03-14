@@ -1,12 +1,30 @@
 // Script Code
 
 // set variables
-// gameTimer = 75 * 1000ms
+const startButton = document.getElementById('start-btn');
+const QuestionContainerEl = document.getElementById('container');
+
+startButton.addEventListener('click', startGame)
+
+// gameTimer = 120 * 1000ms
+// let score = 0;
+
 // timerLossForWrongAnswer = 5 * 1000ms
 
 // check for start button
+function startGame() {
+    console.log('started');
+    startButton.classList.add('hide');
+    QuestionContainerEl.classList.add('hide');
+    
+}
+    
+//    document.getElementById("staticBackdrop").classList.add('hide');  
+
 
 // start timer - update top left timer
+
+
     // decrese timer by 1 seconds (1000ms)
 // Question Loop
     // display question and answers
