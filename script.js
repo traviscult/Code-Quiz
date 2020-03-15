@@ -32,7 +32,6 @@ function setNextQuestion() {
     showQuestion(shuffledQuestions[currentQuestionIndex])
 
 }
-
 function showQuestion(question) {
     questionEl.innerText = question.question
     question.answers.forEach(answer => {
@@ -47,7 +46,6 @@ function showQuestion(question) {
     })
   }
   
-
 function selectAnswer() {
     const selectedButton = e.target
     const correct = selectedButton.dataset.correct
@@ -56,10 +54,9 @@ function selectAnswer() {
       setStatusClass(button, button.dataset.correct)
     })
     if (shuffledQuestions.length > currentQuestionIndex + 1) {
-    //   nextButton.classList.remove('hide')
     } else {
       startButton.innerText = 'Restart'
-    //   startButton.classList.remove('hide')
+      
     }
     
 }
