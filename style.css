@@ -64,12 +64,7 @@ body {
   clear: both;
 }
 
-#minutes {
-  font-size: 2em;
-  float: left;
-}
-
 #seconds {
-  font-size: 1em;
+  font-size: 2em;
   float: left;
 }

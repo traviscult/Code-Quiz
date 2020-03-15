@@ -23,6 +23,24 @@ let score = 0;
 
 // }
 
+// function setTime(secondsLeft) {
+//   let timeLeft = document.getElementById("timer");
+//   if (inProgress != true) {
+//       inProgress = true;
+//       var timerInterval = setInterval(function () {
+//           secondsLeft--;
+//           timeLeft.textContent = secondsLeft;
+//           console.log("current timer: ", timeLeft.textContent);
+//            if (secondsLeft === 0) {
+//               clearInterval(timerInterval);
+//               inProgress = false;
+//               $("#startGame").show();
+//               gameMessage("Game over!");
+//           }
+//       }, 1000);
+//   }
+// }
+
 
 // check for start button hide rules and display first question
 function startGame() {
@@ -33,10 +51,11 @@ function startGame() {
     $( ".rules" ).hide();
     $( ".container" ).removeClass("hide");
     setNextQuestion()
-    startTimer()
+    // setTime()
 }
      
 function setNextQuestion() {
+    resetState()
     showQuestion(shuffledQuestions[currentQuestionIndex])
 
 }
@@ -45,7 +64,9 @@ function showQuestion(question) {
     questionEl.innerText = question.question
     question.answers.forEach(answer => {
       //this will not disply the answers in the answer buttons!!!!!!!!!!!!!!!!!!!!!!
+      const button = document.createElement('button');
       button.innerText = answer.text
+      button.classList.add('btn')
       if (answer.correct) {
         button.dataset.correct = answer.correct
       }
@@ -54,7 +75,14 @@ function showQuestion(question) {
     })
   }
 
-function selectAnswer() {
+  function resetState() {
+    clearStatusClass(document.body)
+    while (answerButtonsEl.firstChild) {
+      answerButtonsEl.removeChild(answerButtonsEl.firstChild)
+    }
+  }
+
+function selectAnswer(e) {
     const selectedButton = e.target
     const correct = selectedButton.dataset.correct
     setStatusClass(document.body, correct)
@@ -66,6 +94,15 @@ function selectAnswer() {
       startButton.innerText = 'Restart' 
     }
     
+}
+
+function setStatusClass(element, correct) {
+  clearStatusClass(element)
+  if (correct) {
+    element.classList.add('correct')
+  } else {
+    element.classList.add('wrong')
+  }
 }
   
 function clearStatusClass(element) {
@@ -100,6 +137,15 @@ const questions = [
           { text: 'if (i == 5)  ', correct: true },
           { text: 'if i == 5 then', correct: false },
           { text: 'if i = 5', correct: false }
+        ]
+      },
+      {
+        question: 'How does a FOR loop start?',
+        answers: [
+          { text: 'for (i <= 5; i++) ', correct: false },
+          { text: 'for (i = 0; i <= 5; i++)  ', correct: true },
+          { text: 'for i = 1 to 5', correct: false },
+          { text: 'for (i = 0; i <= 5)', correct: false }
         ]
       },
       {
