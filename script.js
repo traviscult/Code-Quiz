@@ -3,44 +3,41 @@
 // set variables
 const startButton = document.getElementById('start-btn');
 const QuestionContainerEl = document.getElementById('container');
-const gameTimerEl = document.getElementById('timer');
 const questionEl = document.getElementById('question')
 const answerButtonsEl = document.getElementById('answer-btns')
 const Timer = document.getElementById('timer');
+const submitButton = document.getElementById('submit');
 
 let shuffledQuestions, currentQuestionIndex
 
 startButton.addEventListener('click', startGame)
 
-let gameTimer = 75;
-let minutesDisplay = document.querySelector("#minutes");
-let secondsDisplay = document.querySelector("#seconds");
-let startTimer = document.querySelector("#start-btn");
+submitButton.addEventListener('click', () => {
+  currentQuestionIndex++;
+  setNextQuestion();
+})
+
+let gameTimer = 30;
+let inProgress = 0;
 let score = 0;
 
-// timerLossForWrongAnswer = 5 * 1000ms
-// function startTimer() {
-
-// }
-
-// function setTime(secondsLeft) {
-//   let timeLeft = document.getElementById("timer");
-//   if (inProgress != true) {
-//       inProgress = true;
-//       var timerInterval = setInterval(function () {
-//           secondsLeft--;
-//           timeLeft.textContent = secondsLeft;
-//           console.log("current timer: ", timeLeft.textContent);
-//            if (secondsLeft === 0) {
-//               clearInterval(timerInterval);
-//               inProgress = false;
-//               $("#startGame").show();
-//               gameMessage("Game over!");
-//           }
-//       }, 1000);
-//   }
-// }
-
+function setTime(secondsLeft) {
+  let Timer = document.getElementById("seconds");
+  if (inProgress != true) {
+      inProgress = true;
+      var timerInterval = setInterval(function () {
+          secondsLeft--;
+          Timer.textContent = secondsLeft;
+          console.log("current timer: ", Timer.textContent);
+           if (secondsLeft === 0) {
+              clearInterval(timerInterval);
+              inProgress = false;
+              $("#startGame").show();
+              gameMessage("Game over!");
+          }
+      }, 1000);
+  }
+}
 
 // check for start button hide rules and display first question
 function startGame() {
@@ -50,20 +47,19 @@ function startGame() {
     currentQuestionIndex = 0
     $( ".rules" ).hide();
     $( ".container" ).removeClass("hide");
+    $( ".controls" ).removeClass("hide");
     setNextQuestion()
-    // setTime()
+    setTime(gameTimer)
 }
      
 function setNextQuestion() {
     resetState()
     showQuestion(shuffledQuestions[currentQuestionIndex])
-
 }
 
 function showQuestion(question) {
     questionEl.innerText = question.question
     question.answers.forEach(answer => {
-      //this will not disply the answers in the answer buttons!!!!!!!!!!!!!!!!!!!!!!
       const button = document.createElement('button');
       button.innerText = answer.text
       button.classList.add('btn')
@@ -76,7 +72,7 @@ function showQuestion(question) {
   }
 
   function resetState() {
-    clearStatusClass(document.body)
+    // clearStatusClass(document.body)
     while (answerButtonsEl.firstChild) {
       answerButtonsEl.removeChild(answerButtonsEl.firstChild)
     }
@@ -90,9 +86,10 @@ function selectAnswer(e) {
       setStatusClass(button, button.dataset.correct)
     })
     if (shuffledQuestions.length > currentQuestionIndex + 1) {
-    } else {
-      startButton.innerText = 'Restart' 
-    }
+      } 
+    //   else {
+    //   startButton.innerText = 'Restart' 
+    // }
     
 }
 
