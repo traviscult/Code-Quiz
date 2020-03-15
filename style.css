@@ -21,6 +21,10 @@ p {
   color: white;
   outline: none;
 }
+#question{
+  font-size: 35px;
+  
+}
 .question-container{
   margin-top: 150px;
 }

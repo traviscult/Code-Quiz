@@ -3,25 +3,118 @@
 // set variables
 const startButton = document.getElementById('start-btn');
 const QuestionContainerEl = document.getElementById('container');
+const gameTimerEl = document.getElementById('timer');
+const questionEl = document.getElementById('question')
+const answerButtonsEl = document.getElementById('answer-btns')
+
+let shuffledQuestions, currentQuestionIndex
 
 startButton.addEventListener('click', startGame)
 
-// let gameTimer = 120 * 1000ms
-// let score = 0;
+let gameTimerEL = 120 * 1000
+let score = 0;
 
 // timerLossForWrongAnswer = 5 * 1000ms
 
-// check for start button
+// check for start button hide rules and display first question
 function startGame() {
     console.log('started');
     $( ".start-btn" ).hide();
+    shuffledQuestions = questions.sort(() => Math.random() - .5)
+    currentQuestionIndex = 0
     $( ".rules" ).hide();;
     $( ".container" ).removeClass("hide");
-    // QuestionContainerEl.classList.add('hide');
+    setNextQuestion()
+}
+     
+function setNextQuestion() {
+    resetState()
+    showQuestion(shuffledQuestions[currentQuestionIndex])
+
+}
+
+function showQuestion(question) {
+    questionEl.innerText = question.question
+    question.answers.forEach(answer => {
+      const button = document.createElement('button')
+      button.innerText = answer.text
+      button.classList.add('btn')
+      if (answer.correct) {
+        button.dataset.correct = answer.correct
+      }
+      button.addEventListener('click', selectAnswer)
+      answerButtonsEl.appendChild(button)
+    })
+  }
+  
+
+function selectAnswer() {
+    const selectedButton = e.target
+    const correct = selectedButton.dataset.correct
+    setStatusClass(document.body, correct)
+    Array.from(answerButtonsEl.children).forEach(button => {
+      setStatusClass(button, button.dataset.correct)
+    })
+    if (shuffledQuestions.length > currentQuestionIndex + 1) {
+    //   nextButton.classList.remove('hide')
+    } else {
+      startButton.innerText = 'Restart'
+    //   startButton.classList.remove('hide')
+    }
     
 }
-    
-//    document.getElementById("staticBackdrop").classList.add('hide');  
+
+function resetState() {
+    clearStatusClass(document.body)
+    while (answerButtonsEl.firstChild) {
+      answerButtonsEl.removeChild(answerButtonsEl.firstChild)
+    }
+  }
+  
+  function clearStatusClass(element) {
+    element.classList.remove('correct')
+    element.classList.remove('wrong')
+  }
+
+// setting questions to an array of questions 
+const questions = [
+    {
+        question: 'question 1',
+        answers: [
+          { text: '1', correct: true },
+          { text: '2', correct: false },
+          { text: '3', correct: false },
+          { text: '4', correct: false }
+        ]
+      },
+      {
+        question: 'question 2',
+        answers: [
+          { text: '1', correct: true },
+          { text: '2', correct: false },
+          { text: '3', correct: false },
+          { text: '4', correct: false }
+        ]
+      },
+      {
+        question: 'question 3',
+        answers: [
+          { text: '1', correct: true },
+          { text: '2', correct: false },
+          { text: '3', correct: false },
+          { text: '4', correct: false }
+        ]
+      },
+      {
+        question: 'question 4',
+        answers: [
+          { text: '1', correct: true },
+          { text: '2', correct: false },
+          { text: '3', correct: false },
+          { text: '4', correct: false }
+        ]
+      }
+]
 
 
 // start timer - update top left timer
@@ -33,7 +126,7 @@ function startGame() {
         // display in HTML ID -  quiz-zone
 
     // check for answer
-        // an event attached to the 4 answeers
+        // an event attached to the 4 answers
 
     // Input right or wrong
 
