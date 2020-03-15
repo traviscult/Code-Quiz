@@ -6,15 +6,23 @@ const QuestionContainerEl = document.getElementById('container');
 const gameTimerEl = document.getElementById('timer');
 const questionEl = document.getElementById('question')
 const answerButtonsEl = document.getElementById('answer-btns')
+const Timer = document.getElementById('timer');
 
 let shuffledQuestions, currentQuestionIndex
 
 startButton.addEventListener('click', startGame)
 
-let gameTimerEL = 120 * 1000
+let gameTimer = 75;
+let minutesDisplay = document.querySelector("#minutes");
+let secondsDisplay = document.querySelector("#seconds");
+let startTimer = document.querySelector("#start-btn");
 let score = 0;
 
 // timerLossForWrongAnswer = 5 * 1000ms
+// function startTimer() {
+
+// }
+
 
 // check for start button hide rules and display first question
 function startGame() {
@@ -22,22 +30,22 @@ function startGame() {
     $( ".start-btn" ).hide();
     shuffledQuestions = questions.sort(() => Math.random() - .5)
     currentQuestionIndex = 0
-    $( ".rules" ).hide();;
+    $( ".rules" ).hide();
     $( ".container" ).removeClass("hide");
     setNextQuestion()
+    startTimer()
 }
      
 function setNextQuestion() {
-    resetState()
     showQuestion(shuffledQuestions[currentQuestionIndex])
 
 }
+
 function showQuestion(question) {
     questionEl.innerText = question.question
     question.answers.forEach(answer => {
-      const button = document.createElement('button')
+      //this will not disply the answers in the answer buttons!!!!!!!!!!!!!!!!!!!!!!
       button.innerText = answer.text
-      button.classList.add('btn')
       if (answer.correct) {
         button.dataset.correct = answer.correct
       }
@@ -45,7 +53,7 @@ function showQuestion(question) {
       answerButtonsEl.appendChild(button)
     })
   }
-  
+
 function selectAnswer() {
     const selectedButton = e.target
     const correct = selectedButton.dataset.correct
@@ -55,96 +63,52 @@ function selectAnswer() {
     })
     if (shuffledQuestions.length > currentQuestionIndex + 1) {
     } else {
-      startButton.innerText = 'Restart'
-      
+      startButton.innerText = 'Restart' 
     }
     
 }
-
-function resetState() {
-    clearStatusClass(document.body)
-    while (answerButtonsEl.firstChild) {
-      answerButtonsEl.removeChild(answerButtonsEl.firstChild)
-    }
-  }
   
-  function clearStatusClass(element) {
-    element.classList.remove('correct')
-    element.classList.remove('wrong')
-  }
+function clearStatusClass(element) {
+  element.classList.remove('correct')
+  element.classList.remove('wrong')
+}
 
 // setting questions to an array of questions 
 const questions = [
     {
-        question: 'question 1',
+        question: 'Inside which HTML element do we put the JavaScript?',
         answers: [
-          { text: '1', correct: true },
-          { text: '2', correct: false },
-          { text: '3', correct: false },
-          { text: '4', correct: false }
+          { text: '<javascript> ', correct: false },
+          { text: '<js>', correct: false },
+          { text: '<script> ', correct: true },
+          { text: '<scripting>', correct: false }
         ]
       },
       {
-        question: 'question 2',
+        question: 'How do you write "Hello World" in an alert box?',
         answers: [
-          { text: '1', correct: true },
-          { text: '2', correct: false },
-          { text: '3', correct: false },
-          { text: '4', correct: false }
+          { text: 'alert("Hello World"); ', correct: true },
+          { text: 'msg("Hello World");', correct: false },
+          { text: 'msgBox("Hello World");', correct: false },
+          { text: 'alertBox("Hello World");', correct: false }
         ]
       },
       {
-        question: 'question 3',
+        question: 'How to write an IF statement in JavaScript?',
         answers: [
-          { text: '1', correct: true },
-          { text: '2', correct: false },
-          { text: '3', correct: false },
-          { text: '4', correct: false }
+          { text: 'if i = 5 then', correct: false },
+          { text: 'if (i == 5)  ', correct: true },
+          { text: 'if i == 5 then', correct: false },
+          { text: 'if i = 5', correct: false }
         ]
       },
       {
-        question: 'question 4',
+        question: 'How to write an IF statement for executing some code if "i" is NOT equal to 5?',
         answers: [
-          { text: '1', correct: true },
-          { text: '2', correct: false },
-          { text: '3', correct: false },
-          { text: '4', correct: false }
+          { text: 'if i =! 5 then', correct: false },
+          { text: 'if (i <> 5)', correct: false },
+          { text: 'if i <> 5', correct: false },
+          { text: 'if (i != 5)  ', correct: true }
         ]
       }
 ]
-
-
-// start timer - update top left timer
-
-
-    // decrese timer by 1 seconds (1000ms)
-// Question Loop
-    // display question and answers
-        // display in HTML ID -  quiz-zone
-
-    // check for answer
-        // an event attached to the 4 answers
-
-    // Input right or wrong
-
-    // wrong no point, -5 timer
-        // gameTimer - tierLossForWrongAnswer
-    // right +1 point
-
-    // if not end of questions || end of timer go back to question loop
-
-// If player rus out of time, nil points - Fail pop up
-    // Do you wnt to play again? ALERT pop up!
-
-
-// After loop is complete check score
-    // if high score enter user name
-    // if not annouce they suck
-
-    // Wait for input to restart game
-
-
-
-
-
-
