@@ -17,7 +17,7 @@ submitButton.addEventListener('click', () => {
   setNextQuestion();
 })
 
-let gameTimer = 30;
+let gameTimer = 45;
 let inProgress = 0;
 let score = 0;
 
@@ -28,7 +28,7 @@ function setTime(secondsLeft) {
       var timerInterval = setInterval(function () {
           secondsLeft--;
           Timer.textContent = secondsLeft;
-          console.log("current timer: ", Timer.textContent);
+          // console.log("current timer: ", Timer.textContent);
            if (secondsLeft === 0) {
               clearInterval(timerInterval);
               inProgress = false;
@@ -51,7 +51,7 @@ function startGame() {
     setNextQuestion()
     setTime(gameTimer)
 }
-     
+
 function setNextQuestion() {
     resetState()
     showQuestion(shuffledQuestions[currentQuestionIndex])
@@ -63,35 +63,39 @@ function showQuestion(question) {
       const button = document.createElement('button');
       button.innerText = answer.text
       button.classList.add('btn')
-      if (answer.correct) {
+      // if (answer.correct) {
         button.dataset.correct = answer.correct
-      }
+      // }
       button.addEventListener('click', selectAnswer)
       answerButtonsEl.appendChild(button)
     })
   }
 
   function resetState() {
-    // clearStatusClass(document.body)
     while (answerButtonsEl.firstChild) {
       answerButtonsEl.removeChild(answerButtonsEl.firstChild)
     }
   }
 
 function selectAnswer(e) {
-    const selectedButton = e.target
-    const correct = selectedButton.dataset.correct
-    setStatusClass(document.body, correct)
+  // when I click an answwer I want it to read weather it is true or false
+     answerButtonsEl.addEventListener('click', function(){
+       console.log('This is working', this)
+      })
+  // if true move on to the next questions
+  // if false remove 5 seconds from game timer and move on to the next question
     Array.from(answerButtonsEl.children).forEach(button => {
       setStatusClass(button, button.dataset.correct)
     })
     if (shuffledQuestions.length > currentQuestionIndex + 1) {
       } 
     //   else {
-    //   startButton.innerText = 'Restart' 
+    //   submitButton.innerText = 'Restart' 
     // }
     
 }
+
+
 
 function setStatusClass(element, correct) {
   clearStatusClass(element)
@@ -103,8 +107,8 @@ function setStatusClass(element, correct) {
 }
   
 function clearStatusClass(element) {
-  element.classList.remove('correct')
-  element.classList.remove('wrong')
+  // element.classList.remove('correct')
+  // element.classList.remove('wrong')
 }
 
 // setting questions to an array of questions 
