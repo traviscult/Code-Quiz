@@ -6,26 +6,27 @@ const QuestionContainerEl = document.getElementById('container');
 const questionEl = document.getElementById('question')
 const answerButtonsEl = document.getElementById('answer-btns')
 const Timer = document.getElementById('timer');
-const submitButton = document.getElementById('submit');
+
 
 let shuffledQuestions, currentQuestionIndex
 
 startButton.addEventListener('click', startGame)
 
-submitButton.addEventListener('click', () => {
-  currentQuestionIndex++;
-  setNextQuestion();
-})
+// submitButton.addEventListener('click', () => {
+//   currentQuestionIndex++;
+//   setNextQuestion();
+// })
 
 let gameTimer = 45;
 let inProgress = 0;
 let score = 0;
+let timerInterval;
 
 function setTime(secondsLeft) {
   let Timer = document.getElementById("seconds");
   if (inProgress != true) {
       inProgress = true;
-      var timerInterval = setInterval(function () {
+       timerInterval = setInterval(function () {
           secondsLeft--;
           Timer.textContent = secondsLeft;
           // console.log("current timer: ", Timer.textContent);
@@ -77,25 +78,29 @@ function showQuestion(question) {
     }
   }
 
-function selectAnswer(e) {
-  // when I click an answwer I want it to read weather it is true or false
-     answerButtonsEl.addEventListener('click', function(){
-       console.log('This is working', this)
-      })
-  // if true move on to the next questions
-  // if false remove 5 seconds from game timer and move on to the next question
-    Array.from(answerButtonsEl.children).forEach(button => {
-      setStatusClass(button, button.dataset.correct)
-    })
-    if (shuffledQuestions.length > currentQuestionIndex + 1) {
-      } 
-    //   else {
-    //   submitButton.innerText = 'Restart' 
-    // }
-    
-}
+  function selectAnswer(e) {
+    console.log(e.target, 'e')
+    console.log('is correct??', e.target.getAttribute('data-correct'))
+    // when I click an answwer I want it to read weather it is true or false
+    const isCorrect = e.target.getAttribute('data-correct')
+    console.log(typeof isCorrect);
+    if(isCorrect === 'true') {
+      console.log('Is True');
+      currentQuestionIndex++;
+      setNextQuestion();
+    } else {
+      const timeLeft = Timer.textContent; 
+      console.log("selectAnswer -> timeLeft", timeLeft);
+      let minusTime = timeLeft -5;
+      console.log("selectAnswer -> minusTime",typeof minusTime);
+      inProgress = false;
+      clearInterval(timerInterval);
+      setTime(minusTime);
+    }
 
-
+    // if true move on to the next questions
+    // if false remove 5 seconds from game timer and move on to the next question
+  }
 
 function setStatusClass(element, correct) {
   clearStatusClass(element)
