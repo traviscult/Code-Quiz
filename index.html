@@ -17,33 +17,38 @@
         </script>
     <header>
         <nav class="nav">
-            <a class="nav-link active" href="#">High-Score</a>
-            <a class="nav-link timer" id="timer"><div class="time">
-                <div id="seconds"></div>
-              </div></a>
+            <a class="nav-link active" href="highscore.html">High-Score</a>
+            <a class="nav-link timer" id="timer">
+                <div class="time">
+                    <div id="seconds"></div>
+                </div>
+            </a>
         </nav>
     </header>
 
     <section id="quiz-area">
-        <p class="rules">  You will have 45 seconds to complete the quiz. For each question answered incorrectly you will
-            lose 5 seconds.
-            <br><strong>Good Luck!</strong></p> 
-        <div id="start-btn"> <button type="button" class="btn btn-primary start-btn">Click here to being the code quiz!</button></div>
-       
+        <p class="rules"> You will have 15 seconds per question to complete the quiz. For each question answered
+            incorrectly you will
+            lose 10 seconds. You must answer the question correctly to proceed to the following question.
+            <br><strong>Good Luck!</strong></p>
+        <div id="start-btn"> <button type="button" class="btn btn-primary start-btn">Click here to being the code
+                quiz!</button></div>
+
         <div class="container hide" id='container'>
             <div class="question-container" id="question">
                 question area
             </div>
-                <div id="answer-btns" class="btn-grid">
-                </div>
+            <div id="answer-btns" class="btn-grid">
             </div>
         </div>
+        </div>
 
+        <div class="end-screen hide">
+            <H2>Game Over!</H2>
+            <p><input id="initials" type="text" placeholder="Your Initials"></p>
+            <div id="submit-btn"> <button type="button" class="btn btn-primary submit-btn">Submit</button></div>
+        </div>
     </section>
-
-    <footer>
-
-    </footer>
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"

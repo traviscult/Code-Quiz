@@ -1,5 +1,9 @@
 body {
 }
+p{
+  margin-right: 200px;
+  margin-left: 200px;
+}
 .rules {
   text-align: center;
   margin-top: 150px;
@@ -24,6 +28,10 @@ body {
 #question{
   font-size: 35px;
   
+}
+.end-screen{
+  text-align: center;
+  margin-top: 150px;
 }
 .question-container{
   margin-top: 150px;
@@ -67,4 +75,7 @@ body {
 #seconds {
   font-size: 2em;
   float: left;
+}
+#submit-btn{
+  margin-top: 25px;
 }
